@@ -20,7 +20,7 @@ func hashPassword(password string) (string, error) {
 func RegisterMerchant(ctx context.Context, db repo.DB, input *model.Merchant_Input) error {
 	exist, err := db.ExistsByEmail(ctx, input.Email)
 	if err != nil {
-		logger.LogError(ctx, "error while cheking Email", err)
+		logger.Lg.Error("error while cheking Email", "error", err)
 		return  err
 	}
 	if exist == true {
@@ -29,7 +29,7 @@ func RegisterMerchant(ctx context.Context, db repo.DB, input *model.Merchant_Inp
 
 	hash, err := hashPassword(input.Password)
 	if err != nil {
-		logger.LogError(ctx, "error while hashing password..", err)
+		logger.Lg.Error("error while hashing password..", "error", err)
 		return err
 	}
 	merchant := model.Merchant{

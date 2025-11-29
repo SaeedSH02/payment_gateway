@@ -5,7 +5,6 @@ import (
 
 	model "github.com/SaeedSH02/payment_gateway/Models"
 	logger "github.com/SaeedSH02/payment_gateway/log"
-	"go.uber.org/zap"
 )
 
 func (p *postgres) ExistsByEmail(ctx context.Context, email string) (bool, error) {
@@ -17,9 +16,9 @@ func (p *postgres) ExistsByEmail(ctx context.Context, email string) (bool, error
 }
 func (p *postgres) CreatMerchant(ctx context.Context, merchant *model.Merchant) error {
 	if _, err := p.db.NewInsert().Model(merchant).Exec(ctx); err != nil {
-		logger.LogError(ctx, "cant create merchant", err)
+		logger.Lg.Error("cant create merchant: ", "error: ", err)
 		return err
 	}
-	logger.FromContext(ctx).Info("user created: ", zap.Any("user: ", merchant))
+	logger.Lg.Info("user created: ", "user: ", merchant)
 	return nil
 }

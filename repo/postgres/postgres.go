@@ -59,7 +59,7 @@ func createTables(pg *bun.DB,ctx context.Context) error {
 		IfNotExists().
 		Exec(ctx)
 	if err != nil {
-		logger.LogError(ctx, "cant create merchant table", err)
+		logger.Lg.Error("cant create merchant table: ", "error: ", err)
 		return err
 	}
 
@@ -68,7 +68,7 @@ func createTables(pg *bun.DB,ctx context.Context) error {
 		IfNotExists().
 		Exec(ctx)
 	if err != nil {
-		logger.LogError(ctx, "cant create api_key table", err)
+		logger.Lg.Error("cant create api_key table: ", "error: ", err)
 		return err
 	}
 

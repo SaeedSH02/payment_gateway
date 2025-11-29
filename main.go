@@ -10,11 +10,8 @@ import (
 
 
 func main() {
-	log, err := logger.Init("production", "./logs/app.log")
-	if err != nil {
-		panic(err)
-	}
-	defer log.Sync()
+	logger.Initialize()
+
 
 	pgDB, err := pg.NewPostgres(config.C.Postgres)
 	if err != nil {
