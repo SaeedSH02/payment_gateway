@@ -1,3 +1,7 @@
 /vendor
 /bin
 .env
+.idea
+.DS_Store
+/log/old_log.go
+log.json

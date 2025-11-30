@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	model "github.com/SaeedSH02/payment_gateway/Models"
+	model "github.com/SaeedSH02/payment_gateway/models"
 	"github.com/SaeedSH02/payment_gateway/config"
 	logger "github.com/SaeedSH02/payment_gateway/log"
 	"github.com/uptrace/bun"

@@ -1,8 +1,9 @@
-package model
+package models
 
 import (
 	"time"
 
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/uptrace/bun"
 )
 
@@ -19,9 +20,18 @@ type Merchant struct {
 	ApiKeys []*ApiKey `bun:"rel:has-many,join:id=merchant_id"`
 }
 
-
 type Merchant_Input struct {
-	Name         string		`json:"name" binding:"required"`
-	Email        string		`json:"email" binding:"required,email"`
-	Password string		`json:"password" binding:"required,min=6"`
+	Name     string `json:"name" binding:"required"`
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password" binding:"required,min=6"`
+}
+
+type Merchant_Login struct {
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password"`
+}
+
+type Claims struct {
+	Email string `json:"email"`
+	jwt.RegisteredClaims
 }

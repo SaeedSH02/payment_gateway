@@ -4,7 +4,8 @@ import (
 	"context"
 	"errors"
 
-	model "github.com/SaeedSH02/payment_gateway/Models"
+
+	models "github.com/SaeedSH02/payment_gateway/models"
 	logger "github.com/SaeedSH02/payment_gateway/log"
 	"github.com/SaeedSH02/payment_gateway/repo"
 	"golang.org/x/crypto/bcrypt"
@@ -17,7 +18,7 @@ func hashPassword(password string) (string, error) {
 
 
 
-func RegisterMerchant(ctx context.Context, db repo.DB, input *model.Merchant_Input) error {
+func RegisterMerchant(ctx context.Context, db repo.DB, input *models.Merchant_Input) error {
 	exist, err := db.ExistsByEmail(ctx, input.Email)
 	if err != nil {
 		logger.Lg.Error("error while cheking Email", "error", err)
@@ -32,7 +33,7 @@ func RegisterMerchant(ctx context.Context, db repo.DB, input *model.Merchant_Inp
 		logger.Lg.Error("error while hashing password..", "error", err)
 		return err
 	}
-	merchant := model.Merchant{
+	merchant := models.Merchant{
 		Name: input.Name,
 		Email: input.Email,
 		PasswordHash: hash,
