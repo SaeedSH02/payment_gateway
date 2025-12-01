@@ -30,6 +30,9 @@ type Merchant_Login struct {
 	Email    string `json:"email" binding:"required,email"`
 	Password string `json:"password"`
 }
+type LoginResponse struct {
+    Token string `json:"token"`
+}
 
 type Claims struct {
 	Email string `json:"email"`
